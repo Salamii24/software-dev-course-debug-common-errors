@@ -20,43 +20,45 @@ Think about which debugging methods you found most useful and how you might appl
 
 // Programs and Solutions
 
-// Program A
+// Program A (Syntax Error)
 // Description:
 // This program is intended to display a simple prompt in the console but fails to run.
 
-console.log("Welcome to the bootcamp
+// Error: Missing closing quote and parenthesis → causes a SYNTAX ERROR
+console.log("Welcome to the bootcamp"); // Fixed with closing quote + parenthesis
 
-// What’s Wrong?
 
-
-// Program B
+// Program B (Runtime Error)
 // Description:
-// This code attempts to multiply each number in an array by 2 and display the results. However, it crashes at runtime.
+// This code attempts to multiply each number in an array by 2 and display the results.
+// However, it crashes at runtime because "eight" is a string, not a number.
 
-let numbers = [2, 4, "eight"];
+let numbers = [2, 4, 8]; // Fix: replaced "eight" (string) with 8 (number)
 for (let i = 0; i < numbers.length; i++) {
   let doubled = numbers[i] * 2;
   console.log(doubled);
 }
-
-// What’s Wrong?
-
+// Now it prints: 4, 8, 16
 
 
 // Program C (Logic Error)
 // Description:
-// This snippet of code is supposed to check if a given number is prime (i.e., divisible only by 1 and itself). However, it incorrectly marks some numbers as prime or not prime.
+// This snippet of code is supposed to check if a number is prime. 
+// However, it returns the opposite result due to incorrect return placement.
+
+// Error: `return true` is inside the loop when a divisor is found, 
+// but it should return FALSE in that case (not prime).
+// Error: Final `return false` should instead return TRUE (prime number).
 
 function isPrime(num) {
   if (num < 2) return false;
   for (let i = 2; i < num; i++) {
     if (num % i === 0) {
-      return true;  // Supposed to indicate num is NOT prime
+      return false; // Fixed: number is divisible by something → NOT prime
     }
   }
-  return false; // Supposed to indicate num IS prime
+  return true; // Fixed: if no divisors found, it IS prime
 }
 
-console.log(isPrime(7)); // Expected true but gets false
-
-// What’s Wrong?
+console.log(isPrime(7)); // Prints true
+console.log(isPrime(10)); // Prints false
